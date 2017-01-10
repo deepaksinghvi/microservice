@@ -1,0 +1,100 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discoveryserver:1111/eureka/
+
+server:
+  port: 5555
+
+zuul:
+  ignoredServices: '*'
+  routes:
+    catalog:
+      path: /catalogservice/**
+      serviceId: catalogservice
+      stripPrefix: false
+    user:
+      path: /userservice/**
+      serviceId: userservice
+      stripPrefix: false
+    order:
+      path: /orderservice/**
+      serviceId: orderservice
+      stripPrefix: false
+
+# Spring properties
+spring:
+  security:
+    basic:
+      enabled: false
+  application:
+       name: proxyservice
+
+logging:
+  level:
+    ROOT: INFO
+    org.springframework.web: INFO
+    com.deepak: INFO
+
+#userservice:
+#  ribbon:
+#    listOfServers: http://localhost:2222/,http://localhost:1212/
+#    ConnectTimeout: 30000
+#    ReadTimeout: 30000
+
+#catalogservice:
+#  ribbon:
+#    listOfServers: http://localhost:3333/,http://localhost:1213/
+#    ConnectTimeout: 30000
+#    ReadTimeout: 30000
+
+#orderservice:
+#  ribbon:
+#    listOfServers: http://localhost:4444/,http://localhost:1214/
+#    ConnectTimeout: 30000
+#    ReadTimeout: 30000
+
+# Disable Hystrix timeout globally (for all services)
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        timeout:
+#          enabled: false
+#      isolation:
+#        thread:
+#          timeoutInMilliseconds: 60000
+#    orderservice:
+#      execution:
+#        timeout:
+#          enabled: false
+#      isolation:
+#        thread:
+#          timeoutInMilliseconds: 60000
+#    userservice:
+#      execution:
+#        timeout:
+#          enabled: false
+#      isolation:
+#        thread:
+#          timeoutInMilliseconds: 60000
+
+#    catalogservice:
+#      execution:
+#        timeout:
+#          enabled: false
+#      isolation:
+#              thread:
+#                timeoutInMilliseconds: 60000
+
+#ribbon:
+#  eureka:
+#    enabled: false
+
+#endpoints:
+#  restart:
+#    enabled: true
+#  shutdown:
+#    enabled: true
+#  health:
+#    sensitive: false

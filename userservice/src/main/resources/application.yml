@@ -1,0 +1,22 @@
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+  client:
+    serviceUrl:
+      defaultZone: http://discoveryserver:1111/eureka/
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+# HTTP Server
+server:
+  port: 2222
+#management:
+#  port: 2999
+#  address: localhost
+
+# Spring properties
+spring:
+  application:
+     name: userservice

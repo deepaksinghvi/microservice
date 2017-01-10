@@ -1,0 +1,19 @@
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2
+  client:
+    serviceUrl:
+      defaultZone: http://discoveryserver:1111/eureka/
+    healthcheck:
+      enabled: true
+    lease:
+      duration: 5
+# HTTP Server
+server:
+  port: 3333
+
+# Spring properties
+spring:
+  application:
+     name: catalogservice

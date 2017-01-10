@@ -1,0 +1,35 @@
+version: "2"
+services:
+  discoveryserver:
+    image: deepaksinghvi/discoveryserver
+    ports:
+      - "1111:1111"
+  proxyservice:
+    image: deepaksinghvi/proxyservice
+    ports:
+    - "5555:5555"
+    links:
+      - discoveryserver
+      - catalogservice
+      - userservice
+      - orderservice
+  catalogservice:
+    image: deepaksinghvi/catalogservice
+    ports:
+      - "3333:3333"
+    links:
+      - discoveryserver
+  userservice:
+    image: deepaksinghvi/userservice
+    ports:
+      - "2222:2222"
+    links:
+      - discoveryserver
+  orderservice:
+    image: deepaksinghvi/orderservice
+    ports:
+      - "4444:4444"
+    links:
+      - discoveryserver
+      - userservice
+      - catalogservice
